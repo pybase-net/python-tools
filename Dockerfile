@@ -31,8 +31,6 @@ COPY entrypoint.sh /app/entrypoint.sh
 # Make the entrypoint script executable
 RUN chmod +x /app/entrypoint.sh
 
-# Expose the Redis port
-EXPOSE 6379
 
 # Run the entrypoint script
 CMD ["/app/entrypoint.sh"]
