@@ -38,7 +38,7 @@ gcloud builds submit "https://github.com/pybase-net/python-tools.git" --git-sour
 
 ```sh
 docker build -t my-celery-app .
-docker run -d -p 6379:6379 --name my-celery-container my-celery-app
+docker run -d -p 8080:8080 --name my-celery-container my-celery-app
 docker logs my-celery-container --follow
 ```
 

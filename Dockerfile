@@ -34,3 +34,5 @@ RUN chmod +x /app/entrypoint.sh
 
 # Run the entrypoint script
 CMD ["/app/entrypoint.sh"]
+
+EXPOSE 8080

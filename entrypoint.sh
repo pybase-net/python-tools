@@ -7,4 +7,6 @@
 #sleep 5
 
 # Start Celery worker and beat
-celery -A make_celery.celery_app worker -B --loglevel=info --concurrency=1
+celery -A make_celery.celery_app worker -B --loglevel=info --concurrency=1 &
+
+flask run --host=0.0.0.0 --port=8080
