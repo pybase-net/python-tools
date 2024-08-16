@@ -1,5 +1,5 @@
-# Use an official Python 3.11.4 runtime as a parent image
-FROM python:3.11.4
+# Use an official Python runtime as a parent image
+FROM python:3.11
 
 # Set environment variables to avoid bytecode generation and buffer output
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -7,6 +7,9 @@ ENV PYTHONUNBUFFERED 1
 
 # Set the working directory
 WORKDIR /app
+
+# Install Redis
+RUN apt-get update && apt-get install -y redis-server
 
 # Install Poetry
 RUN pip install --upgrade pip \

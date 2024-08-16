@@ -33,3 +33,11 @@ celery -A make_celery.celery_app flower
 ```
 gcloud builds submit "https://github.com/pybase-net/python-tools.git" --git-source-revision=main --config=cloudbuild.yaml
 ```
+
+## Local
+
+```sh
+docker build -t my-celery-app .
+docker run -d -p 6379:6379 --name my-celery-container my-celery-app
+docker logs my-celery-container --follow
+```
