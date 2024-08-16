@@ -12,8 +12,8 @@ def create_app(config_class=None):
     else:
         app.config.from_mapping(
             CELERY=dict(
-                broker_url=os.getenv("REDIS_BROKER_URL", "redis://redis:6379/0"),
-                result_backend=os.getenv("REDIS_RESULT_BACKEND", "redis://redis:6379/1"),
+                broker_url=os.getenv("REDIS_BROKER_URL", "redis://10.241.102.155:6379/0"),
+                result_backend=os.getenv("REDIS_RESULT_BACKEND", "redis://10.241.102.155:6379/0"),
                 task_ignore_result=True,
                 timezone="Asia/Ho_Chi_Minh",
                 enable_utc=True,
