@@ -31,7 +31,7 @@ celery -A make_celery.celery_app flower
 ```
 
 ```
-gcloud builds submit "https://github.com/pybase-net/python-tools.git" --git-source-revision=main --config=cloudbuild.yaml
+gcloud builds submit "https://github.com/pybase-net/python-tools.git" --git-source-revision=main  --config=cloudbuild.yaml
 ```
 
 ## Local
