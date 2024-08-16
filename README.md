@@ -41,3 +41,15 @@ docker build -t my-celery-app .
 docker run -d -p 6379:6379 --name my-celery-container my-celery-app
 docker logs my-celery-container --follow
 ```
+
+## Create redis
+
+```sh
+gcloud redis instances create pybaseredis \
+    --size=256MB \
+    --region=us-central1 \
+    --redis-version=redis_6_x \
+    --tier=standard \
+    --labels=env=production
+
+```

@@ -8,8 +8,8 @@ ENV PYTHONUNBUFFERED 1
 # Set the working directory
 WORKDIR /app
 
-# Install Redis
-RUN apt-get update && apt-get install -y redis-server
+## Install Redis
+#RUN apt-get update && apt-get install -y redis-server
 
 # Install Poetry
 RUN pip install --upgrade pip \

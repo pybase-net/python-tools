@@ -1,5 +1,6 @@
 from flask import Flask
 from .celery import celery_init_app
+import os
 
 
 def create_app(config_class=None):
@@ -11,8 +12,8 @@ def create_app(config_class=None):
     else:
         app.config.from_mapping(
             CELERY=dict(
-                broker_url="redis://localhost:6379/0",
-                result_backend="redis://localhost:6379/1",
+                broker_url=os.getenv("REDIS_BROKER_URL", "redis://localhost:6379/0"),
+                result_backend=os.getenv("REDIS_RESULT_BACKEND", "redis://localhost:6379/1"),
                 task_ignore_result=True,
                 timezone="Asia/Ho_Chi_Minh",
                 enable_utc=True,
