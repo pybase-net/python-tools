@@ -29,3 +29,7 @@ Visualize Monitoring
 poetry add flower
 celery -A make_celery.celery_app flower
 ```
+
+```
+gcloud builds submit "https://github.com/pybase-net/python-tools.git" --git-source-revision=main --config=cloudbuild.yaml
+```
