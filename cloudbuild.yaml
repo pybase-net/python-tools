@@ -31,6 +31,7 @@ steps:
       '--image', 'gcr.io/$PROJECT_ID/python-tools:latest',
       '--platform', 'managed',
       '--region', 'us-central1',
+      '--vpc-connector', 'my-vpc-connector',  # If you have a VPC connector
       '--allow-unauthenticated'
     ]
 

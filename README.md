@@ -53,10 +53,60 @@ gcloud redis instances create pybaseredis \
     --labels=env=dev
 
 gcloud auth login
-gcloud config set project playground-s-11-4b04a4c2
+gcloud config set project playground-s-11-362b4d45
 
 gcloud builds submit "https://github.com/pybase-net/python-tools.git" --git-source-revision=main  --config=cloudbuild.yaml
 ```
 
-redis://10.234.41.148:6379/0
-redis://10.234.41.148:6379/1
+REDIS_BROKER_URL=redis://10.241.102.155:6379/0
+REDIS_RESULT_BACKEND=redis://10.241.102.155:6379/1
+
+gcloud compute networks vpc-access connectors create my-vpc-connector \
+    --network default \
+    --region us-central1 \
+    --range 10.8.0.0/28
+
+```sh
+gcloud compute networks create my-vpc-network \
+    --subnet-mode=custom
+gcloud compute networks subnets create my-vpc-subnet \
+    --network=my-vpc-network \
+    --region=us-central1 \
+    --range=10.8.0.0/24
+gcloud redis instances create my-redis-instance \
+    --size=1 \
+    --region=us-central1 \
+    --network=my-vpc-network \
+    --redis-version=redis_6_x
+gcloud compute networks vpc-access connectors create my-vpc-connector \
+    --network my-vpc-network \
+    --region us-central1 \
+    --range 10.8.0.0/28
+gcloud run deploy my-cloud-run-service \
+    --image gcr.io/my-project/my-image \
+    --vpc-connector my-vpc-connector \
+    --set-env-vars REDIS_HOST=10.8.0.2,REDIS_PORT=6379 \
+    --region us-central1 \
+    --allow-unauthenticated
+
+```
+
+```sh
+gcloud redis instances create pybase-redis-instance \
+    --size=1 \
+    --region=us-central1 \
+    --network=default \
+    --redis-version=redis_6_x
+
+gcloud compute networks vpc-access connectors delete my-vpc-connector \
+    --region us-central1
+
+gcloud compute networks vpc-access connectors create my-vpc-connector \
+    --network default \
+    --region us-central1 \
+    --range 10.8.0.0/28 \
+    --min-instances 2 \
+    --max-instances 3 \
+    --machine-type e2-micro
+
+```
