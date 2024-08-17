@@ -2,7 +2,11 @@ from flask import Flask
 from .celery import celery_init_app
 import os
 
+redis_host = os.environ.get("REDISHOST", "localhost")
+redis_port = int(os.environ.get("REDISPORT", 6379))
+redis_url = f"redis://{redis_host}:{redis_port}"
 
+print(f"[DEBUG]{redis_url}")
 def create_app(config_class=None):
     app = Flask(__name__)
 
@@ -12,8 +16,8 @@ def create_app(config_class=None):
     else:
         app.config.from_mapping(
             CELERY=dict(
-                broker_url=os.getenv("REDIS_BROKER_URL", "redis://10.241.102.155:6379/0"),
-                result_backend=os.getenv("REDIS_RESULT_BACKEND", "redis://10.241.102.155:6379/0"),
+                broker_url=f"{redis_url}/0",
+                result_backend=f"{redis_url}/1",
                 task_ignore_result=True,
                 timezone="Asia/Ho_Chi_Minh",
                 enable_utc=True,

@@ -25,15 +25,15 @@ steps:
     ]
 
   # Step 5: Optionally, deploy the image to Cloud Run or another service
-  - name: 'gcr.io/cloud-builders/gcloud'
-    args: [
-      'run', 'deploy', 'python-tools-service',
-      '--image', 'gcr.io/$PROJECT_ID/python-tools:latest',
-      '--platform', 'managed',
-      '--region', 'us-central1',
-      '--vpc-connector', 'my-vpc-connector',  # If you have a VPC connector
-      '--allow-unauthenticated'
-    ]
+#  - name: 'gcr.io/cloud-builders/gcloud'
+#    args: [
+#      'run', 'deploy', 'python-tools-service',
+#      '--image', 'gcr.io/$PROJECT_ID/python-tools:latest',
+#      '--platform', 'managed',
+#      '--region', 'us-central1',
+#      '--vpc-connector', 'my-vpc-connector',  # If you have a VPC connector
+#      '--allow-unauthenticated'
+#    ]
 
 images:
   - 'gcr.io/$PROJECT_ID/python-tools:latest'

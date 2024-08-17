@@ -8,6 +8,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
+    environment:
+      REDISHOST: redis
   redis:
     image: redis:7.0.11-alpine3.18
     container_name: my_redis

@@ -53,7 +53,7 @@ gcloud redis instances create pybaseredis \
     --labels=env=dev
 
 gcloud auth login
-gcloud config set project playground-s-11-362b4d45
+gcloud config set project playground-s-11-bbffe00a
 
 gcloud builds submit "https://github.com/pybase-net/python-tools.git" --git-source-revision=main  --config=cloudbuild.yaml
 ```
@@ -110,3 +110,13 @@ gcloud compute networks vpc-access connectors create my-vpc-connector \
     --machine-type e2-micro
 
 ```
+
+```sh
+gcloud builds submit --tag gcr.io/playground-s-11-bbffe00a/python-tools
+```
+
+```sh
+gcloud redis instances create --project=playground-s-11-bbffe00a  demo --tier=basic --size=1 --region=us-central1 --redis-version=redis_7_0 --network=projects/playground-s-11-bbffe00a/global/networks/default --connect-mode=DIRECT_PEERING --display-name="demo"
+```
+
+10.118.224.27:6379
